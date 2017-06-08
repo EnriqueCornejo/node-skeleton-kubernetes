@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: develop
+  name: develop
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: develop
+    spec:
+      containers:
+      - args:
+        - develop
+        env:
+        - name: PORT
+          value: "3005"
+        - name: API_VERSION
+          value: v1
+        - name: CT_TOKEN
+          value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
+        - name: CT_URL
+          value: http://mymachine:9000
+        - name: LOCAL_URL
+          value: http://mymachine:3005
+        - name: NODE_PATH
+          value: app/src
+        name: node-skeleton
+        ports:
+        - containerPort: 3005
+        - containerPort: 35729
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/node-skeleton/app
+          name: develop-claim0
+        image: node-skeleton
+      restartPolicy: Always
+      
+      volumes:
+      - name: develop-claim0
+        persistentVolumeClaim:
+          claimName: develop-claim0
+status: {}

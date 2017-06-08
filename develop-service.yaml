@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: develop
+  name: develop
+spec:
+  ports:
+  - name: "3005"
+    port: 3005
+    targetPort: 3005
+  - name: "35739"
+    port: 35739
+    targetPort: 35729
+  selector:
+    io.kompose.service: develop
+status:
+  loadBalancer: {}
