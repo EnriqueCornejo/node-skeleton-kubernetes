@@ -1,6 +1,6 @@
 version: "2"
 services:
-  develop:
+  skeleton:
     extends:
       file: base.yml
       service: base
@@ -11,6 +11,4 @@ services:
       LOCAL_URL: http://mymachine:3005
       CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
       API_VERSION: v1
-    command: develop
-    volumes:
-      - ./app:/opt/node-skeleton/app
+    command: start

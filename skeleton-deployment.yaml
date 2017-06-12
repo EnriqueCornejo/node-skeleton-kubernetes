@@ -3,22 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: develop
-  name: develop
+    io.kompose.service: skeleton
+  name: skeleton
 spec:
   replicas: 1
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: develop
+        io.kompose.service: skeleton
     spec:
       containers:
       - args:
-        - develop
+        - start
         env:
+        - name: NODE_PATH
+          value: app/src
         - name: PORT
           value: "3005"
         - name: API_VERSION
@@ -29,21 +30,11 @@ spec:
           value: http://mymachine:9000
         - name: LOCAL_URL
           value: http://mymachine:3005
-        - name: NODE_PATH
-          value: app/src
         name: node-skeleton
         ports:
         - containerPort: 3005
         - containerPort: 35729
         resources: {}
-        volumeMounts:
-        - mountPath: /opt/node-skeleton/app
-          name: develop-claim0
-        image: node-skeleton
+        image: node-skeleton:v1
       restartPolicy: Always
-      
-      volumes:
-      - name: develop-claim0
-        persistentVolumeClaim:
-          claimName: develop-claim0
 status: {}

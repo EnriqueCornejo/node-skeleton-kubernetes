@@ -1,13 +1,11 @@
-prod:
-  image: vizzuality/node-skeleton:1.0.0${STAGING}
-  ports:
-    - "3005"
-  env_file:
-    - prod.env
-  command: start
-  dns: ${DNS_SERVER}
-  restart: always
-  log_driver: "syslog"
-  log_opt:
-      syslog-address: ${SYSLOG_ADDRESS}
-      tag: node-skeleton${STAGING}
+version: "2"
+services:
+  prod:
+    image: vizzuality/node-skeleton:1.0.0${STAGING}
+    ports:
+      - "3005"
+    env_file:
+      - prod.env
+    command: start
+    dns: ${DNS_SERVER}
+    restart: always

@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: develop
-  name: develop
+    io.kompose.service: skeleton
+  name: skeleton
 spec:
   ports:
   - name: "3005"
@@ -14,6 +14,6 @@ spec:
     port: 35739
     targetPort: 35729
   selector:
-    io.kompose.service: develop
+    io.kompose.service: skeleton
 status:
   loadBalancer: {}
